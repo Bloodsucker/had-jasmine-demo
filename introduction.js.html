@@ -111,6 +111,192 @@ JavaScript scoping rules apply, so variables declared in a <code>describe</code>
         </div>
       </td>
     </tr>
+    <tr id="section-Expectations">
+      <td class="docs">
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Expectations">¶</a>
+        </div>
+        <h2>Expectations</h2>
+
+<p>Expectations are built with the function <code>expect</code> which takes a value, called the actual. It is chained with a Matcher function, which takes the expected value.</p>
+      </td>
+      <td class="code">
+        <div class="highlight">
+          <pre><span class="nx">describe</span><span class="p">(</span><span class="s2">"The 'toBe' matcher compares with ==="</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></pre>
+        </div>
+      </td>
+    </tr>
+    <tr id="section-Matchers">
+      <td class="docs">
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Matchers">¶</a>
+        </div>
+        <h3>Matchers</h3>
+
+<p>Each matcher implements a boolean comparison between the actual value
+ and the expected value. It is responsible for reporting to Jasmine if 
+the expectation is true or false. Jasmine will then pass or fail the 
+spec.</p>
+      </td>
+      <td class="code">
+        <div class="highlight">
+          <pre>  <span class="nx">it</span><span class="p">(</span><span class="s2">"and has a positive case "</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="p">});</span></pre>
+        </div>
+      </td>
+    </tr>
+    <tr id="section-6">
+      <td class="docs">
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">¶</a>
+        </div>
+        <p>Any matcher can evaluate to a negative assertion by chaining the call to <code>expect</code> with a <code>not</code> before calling the matcher.</p>
+      </td>
+      <td class="code">
+        <div class="highlight">
+          <pre>  <span class="nx">it</span><span class="p">(</span><span class="s2">"and can have a negative case"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span></pre>
+        </div>
+      </td>
+    </tr>
+    <tr id="section-Included_Matchers">
+      <td class="docs">
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Included_Matchers">¶</a>
+        </div>
+        <h3>Included Matchers</h3>
+
+<p>Jasmine has a rich set of matchers included. Each is used here – all expectations and specs pass.</p>
+
+<p>There is also the ability to write <a href="https://github.com/pivotal/jasmine/wiki/Matchers">custom matchers</a> for when a project’s domain calls for specific assertions that are not included below.</p>
+      </td>
+      <td class="code">
+        <div class="highlight">
+          <pre><span class="nx">describe</span><span class="p">(</span><span class="s2">"Included matchers:"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBe' matcher compares with ==="</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s2">"The 'toEqual' matcher"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s2">"works for simple literals and variables"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s2">"should work for objects"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">a</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="nx">b</span><span class="o">:</span> <span class="mi">34</span>
+      <span class="p">};</span>
+      <span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">a</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="nx">b</span><span class="o">:</span> <span class="mi">34</span>
+      <span class="p">};</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">bar</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toMatch' matcher is for regular expressions"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'foo bar baz'</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">toMatch</span><span class="p">(</span><span class="sr">/bar/</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">toMatch</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toMatch</span><span class="p">(</span><span class="sr">/quux/</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeDefined' matcher compares against `undefined`"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">foo</span><span class="o">:</span> <span class="s1">'foo'</span>
+    <span class="p">};</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">foo</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeDefined</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The `toBeUndefined` matcher compares against `undefined`"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">foo</span><span class="o">:</span> <span class="s1">'foo'</span>
+    <span class="p">};</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">foo</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeUndefined</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">).</span><span class="nx">toBeUndefined</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeNull' matcher compares against null"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'foo'</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="kc">null</span><span class="p">).</span><span class="nx">toBeNull</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">toBeNull</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeNull</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeTruthy' matcher is for boolean casting testing"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'foo'</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">toBeTruthy</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeTruthy</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeFalsy' matcher is for boolean casting testing"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'foo'</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">toBeFalsy</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeFalsy</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toContain' matcher is for finding an item in an Array"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="p">];</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">toContain</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">a</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toContain</span><span class="p">(</span><span class="s1">'quux'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeLessThan' matcher is for mathematical comparisons"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="mf">2.78</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">toBeLessThan</span><span class="p">(</span><span class="nx">pi</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">pi</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeLessThan</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeGreaterThan' is for mathematical comparisons"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="mf">2.78</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">pi</span><span class="p">).</span><span class="nx">toBeGreaterThan</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeGreaterThan</span><span class="p">(</span><span class="nx">pi</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toBeCloseTo' matcher is for precision math comparison"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="mf">2.78</span><span class="p">;</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">pi</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toBeCloseTo</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">pi</span><span class="p">).</span><span class="nx">toBeCloseTo</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"The 'toThrow' matcher is for testing if a function throws an exception"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toThrow</span><span class="p">();</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">bar</span><span class="p">).</span><span class="nx">toThrow</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span></pre>
+        </div>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
